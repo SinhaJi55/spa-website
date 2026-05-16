@@ -1,110 +1,100 @@
-// Services.jsx
+// ServiceOptions.jsx
 
 import { motion } from "framer-motion";
+import {
+  User,
+  HeartHandshake,
+  Flame,
+  Dumbbell,
+  Waves,
+} from "lucide-react";
 
 const services = [
   {
+    icon: <User size={55} />,
+    title: "Full Body Massage",
+    desc: "Complete head-to-toe relaxation by certified therapists in private suites.",
+    time: "60 • 90 • 120 MIN",
+  },
+
+  {
+    icon: <HeartHandshake size={55} />,
+    title: "Couple Massage",
+    desc: "Synchronised dual-therapist sessions in our premium couple's suite.",
+    time: "90 • 120 MIN",
+  },
+
+  {
+    icon: <Flame size={55} />,
     title: "Aroma Therapy",
-    desc: "Relax your mind and body with luxury aroma oil treatments.",
-    image:
-      "/image.png",
+    desc: "Premium essential oils, candles & flowing strokes for total sensory escape.",
+    time: "90 • 120 MIN",
   },
 
   {
-    title: "Hot Stone Massage",
-    desc: "Experience deep relaxation with warm stone therapy sessions.",
-    image:
-      "/hotstone.jpg",
+    icon: <Dumbbell size={55} />,
+    title: "Deep Tissue Massage",
+    desc: "Targeted pressure release for chronic tension and muscle recovery.",
+    time: "60 • 90 MIN",
   },
 
   {
-    title: "Luxury Wellness",
-    desc: "Premium wellness rituals designed for comfort and serenity.",
-    image:
-      "/luxury.jpg",
+    icon: <Waves size={55} />,
+    title: "Steam Therapy",
+    desc: "Detoxifying steam room sessions to cleanse, relax and rejuvenate.",
+    time: "30 • 45 MIN",
   },
 ];
 
-export default function Services() {
+export default function ServiceOptions() {
   return (
-    <section className="bg-[#0b0b0b] py-28 overflow-hidden" id="service-section">
-      <div className="max-w-10xl mx-auto px-6">
+    <section className="bg-black py-20 px-4 md:px-10 overflow-hidden" id="service-section">
 
-        {/* TOP CONTENT */}
-        <div className="text-center mb-20">
-          <p className="uppercase tracking-[8px] text-[#d4b29b] text-sm mb-5">
-            Luxury Spa Services
-          </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 border border-[#2a2a2a]">
 
-          <h2 className="text-5xl md:text-7xl text-white font-serif">
-            Premium Wellness Experience
-          </h2>
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 70 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.7,
+              delay: index * 0.15,
+            }}
+            viewport={{ once: true }}
+            whileHover={{ y: -8 }}
+            className="relative bg-[#111] border-r border-b lg:border-b-0 border-[#2a2a2a] px-7 py-14 text-center group overflow-hidden"
+          >
 
-          <div className="w-40 h-[2px] bg-[#d4b29b] mx-auto mt-8"></div>
+            {/* GOLD GLOW */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 bg-yellow-500/10 blur-[90px] rounded-full opacity-0 group-hover:opacity-100 transition duration-500"></div>
 
-          <p className="max-w-3xl mx-auto mt-8 text-gray-400 text-lg leading-8">
-            Discover our exclusive massage therapies, wellness rituals, and
-            luxury relaxation experiences crafted for complete rejuvenation.
-          </p>
-        </div>
+            {/* ICON */}
+            <div className="relative z-10 flex justify-center mb-8 text-yellow-400 drop-shadow-[0_0_15px_rgba(255,215,0,0.6)]">
+              {service.icon}
+            </div>
 
-        {/* SERVICES GRID */}
-        <div className="grid md:grid-cols-3 gap-8">
+            {/* TITLE */}
+            <h3 className="relative z-10 text-white text-2xl md:text-[30px] tracking-wide font-serif uppercase">
+              {service.title}
+            </h3>
 
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 80 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="relative group overflow-hidden rounded-[35px] h-[650px]"
-            >
+            {/* DESCRIPTION */}
+            <p className="relative z-10 text-gray-400 mt-6 leading-8 text-sm md:text-base">
+              {service.desc}
+            </p>
 
-              {/* IMAGE */}
-              <img
-                src={service.image}
-                alt=""
-                className="w-full h-full object-cover group-hover:scale-110 transition duration-700"
-              />
+            {/* TIME BUTTON */}
+            <button className="relative z-10 mt-10 border border-yellow-500/30 px-6 py-3 text-yellow-400 tracking-[3px] text-xs md:text-sm hover:bg-yellow-500 hover:text-black transition duration-500">
+              {service.time}
+            </button>
 
-              {/* DARK OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            {/* HOVER BORDER */}
+            <div className="absolute inset-0 border border-transparent group-hover:border-yellow-500/20 transition duration-500"></div>
 
-              {/* GLOW */}
-              <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-60 h-60 bg-[#d4b29b]/20 blur-[100px] rounded-full"></div>
+          </motion.div>
+        ))}
 
-              {/* CONTENT */}
-              <div className="absolute bottom-0 left-0 p-10 z-10">
-
-                <motion.h3
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-5xl text-white font-light"
-                >
-                  {service.title}
-                </motion.h3>
-
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  transition={{ delay: 0.5 }}
-                  className="text-gray-300 mt-6 leading-8"
-                >
-                  {service.desc}
-                </motion.p>
-
-
-              </div>
-
-              {/* HOVER BORDER */}
-              <div className="absolute inset-0 border border-white/10 rounded-[35px]"></div>
-
-            </motion.div>
-          ))}
-
-        </div>
       </div>
     </section>
   );

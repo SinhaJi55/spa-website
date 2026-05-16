@@ -22,7 +22,7 @@ const teamMembers = [
     role: "Beauty Consultant",
     desc: "Helping clients enhance their natural beauty and confidence every day.",
     image:
-      "/modal3.jpg",
+      "/modal3.png",
     color: "#d7aa57",
   },
 ];
